@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio Manager | Mahir Elite2</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#070707;
+    --panel:#111111;
+    --panel2:#151515;
+    --border:#272727;
+    --text:#ffffff;
+    --muted:#8b8b8b;
+    --red:#ff3030;
+    --red2:#d91f1f;
+    --green:#42d879;
+    --blue:#4da3ff;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:260px;
+    background:#0d0d0d;
+    border-right:1px solid var(--border);
+    padding:24px 16px;
+    z-index:1000;
+}
+
+.brand{
+    padding:10px 12px 30px;
+    border-bottom:1px solid #202020;
+    margin-bottom:25px;
+}
+
+.brand h2{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.brand h2 span{
+    color:var(--red);
+}
+
+.brand small{
+    display:block;
+    color:#666;
+    margin-top:7px;
+    font-size:10px;
+    letter-spacing:1.5px;
+}
+
+.menu-title{
+    color:#555;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    padding:0 12px;
+    margin:20px 0 10px;
+}
+
+.nav a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#999;
+    text-decoration:none;
+    padding:13px 14px;
+    margin-bottom:5px;
+    border-radius:10px;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav a:hover{
+    background:#181818;
+    color:white;
+}
+
+.nav a.active{
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,48,48,.16),
+            rgba(255,48,48,.03)
+        );
+    color:white;
+    border-left:3px solid var(--red);
+}
+
+.nav-icon{
+    width:22px;
+    text-align:center;
+}
+
+.sidebar-bottom{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:20px;
+}
+
+.admin-card{
+    background:#151515;
+    border:1px solid #282828;
+    border-radius:12px;
+    padding:13px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.avatar{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    background:var(--red);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.admin-card strong{
+    font-size:12px;
+}
+
+.admin-card small{
+    display:block;
+    color:#666;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.logout-btn{
+    width:100%;
+    padding:12px;
+    border:1px solid #292929;
+    background:#151515;
+    color:#aaa;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.logout-btn:hover{
+    background:var(--red);
+    border-color:var(--red);
+    color:white;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:260px;
+    padding:28px;
+    max-width:1700px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:28px;
+    letter-spacing:-.7px;
+}
+
+.page-title p{
+    color:#777;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.top-actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:1px solid var(--border);
+    background:#151515;
+    color:#ddd;
+    padding:11px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    text-decoration:none;
+    font-size:13px;
+    transition:.25s;
+}
+
+.btn:hover{
+    background:#222;
+    color:#fff;
+}
+
+.btn-primary{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+    font-weight:700;
+}
+
+.btn-primary:hover{
+    background:var(--red2);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.stat{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:19px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-icon{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:#1b1b1b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.stat-value{
+    font-size:26px;
+    margin-top:13px;
+    font-weight:800;
+}
+
+.stat-label{
+    color:#777;
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.search{
+    position:relative;
+    flex:1;
+    max-width:450px;
+}
+
+.search span{
+    position:absolute;
+    left:13px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#666;
+}
+
+.search input{
+    width:100%;
+    padding:12px 12px 12px 40px;
+    background:#090909;
+    border:1px solid #292929;
+    color:white;
+    border-radius:9px;
+    outline:none;
+}
+
+.search input:focus{
+    border-color:#444;
+}
+
+.filters{
+    display:flex;
+    gap:8px;
+}
+
+.filter{
+    padding:10px 13px;
+    background:#171717;
+    color:#999;
+    border:1px solid #292929;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.filter.active{
+    color:#fff;
+    background:#252525;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    display:grid;
+    grid-template-columns:
+        minmax(360px,430px)
+        1fr;
+    gap:20px;
+    align-items:start;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:22px;
+}
+
+.panel-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.panel-title h2{
+    font-size:17px;
+}
+
+.panel-title small{
+    color:#666;
+    font-size:10px;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    color:#aaa;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    background:#090909;
+    border:1px solid #2a2a2a;
+    color:white;
+    border-radius:9px;
+    padding:12px;
+    outline:none;
+    font-size:13px;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#555;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+select{
+    cursor:pointer;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+/* =========================
+   IMAGE UPLOAD
+========================= */
+
+.upload-box{
+    border:1px dashed #3a3a3a;
+    border-radius:11px;
+    min-height:150px;
+    background:#0a0a0a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.upload-box:hover{
+    border-color:#666;
+    background:#0d0d0d;
+}
+
+.upload-content{
+    padding:20px;
+}
+
+.upload-icon{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.upload-content p{
+    color:#aaa;
+    font-size:12px;
+}
+
+.upload-content small{
+    color:#555;
+    display:block;
+    margin-top:5px;
+}
+
+.upload-box img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+#imageInput{
+    display:none;
+}
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin:15px 0;
+}
+
+.checkbox-row input{
+    width:auto;
+}
+
+.checkbox-row label{
+    margin:0;
+    color:#aaa;
+    cursor:pointer;
+}
+
+/* =========================
+   FORM BUTTONS
+========================= */
+
+.form-actions{
+    display:flex;
+    gap:9px;
+    padding-top:5px;
+}
+
+.form-actions .btn{
+    flex:1;
+}
+
+/* =========================
+   PROJECT LIST
+========================= */
+
+.projects-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.projects-header h2{
+    font-size:17px;
+}
+
+.projects-header span{
+    color:#666;
+    font-size:11px;
+}
+
+.project-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+    gap:15px;
+}
+
+.project-card{
+    background:#0d0d0d;
+    border:1px solid #272727;
+    border-radius:13px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.project-card:hover{
+    border-color:#414141;
+    transform:translateY(-2px);
+}
+
+.project-cover{
+    height:170px;
+    background:#171717;
+    position:relative;
+    overflow:hidden;
+}
+
+.project-cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.no-image{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    color:#444;
+}
+
+.featured{
+    position:absolute;
+    left:10px;
+    top:10px;
+    background:#ff3030;
+    color:#fff;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.project-body{
+    padding:15px;
+}
+
+.project-category{
+    color:#777;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.project-body h3{
+    font-size:15px;
+    margin:7px 0;
+}
+
+.project-body p{
+    color:#777;
+    font-size:11px;
+    line-height:1.6;
+    min-height:52px;
+}
+
+.project-actions{
+    display:flex;
+    gap:7px;
+    margin-top:13px;
+}
+
+.action{
+    flex:1;
+    border:1px solid #2c2c2c;
+    background:#171717;
+    color:#aaa;
+    padding:8px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:11px;
+    transition:.2s;
+}
+
+.action:hover{
+    background:#242424;
+    color:#fff;
+}
+
+.action.delete:hover{
+    background:#ff3030;
+    border-color:#ff3030;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    border:1px dashed #303030;
+    border-radius:12px;
+    padding:60px 20px;
+    text-align:center;
+    color:#666;
+}
+
+.empty .empty-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.empty h3{
+    color:#aaa;
+    margin-bottom:6px;
+}
+
+.empty p{
+    font-size:12px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:16px;
+    padding:22px;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+    border:1px solid #333;
+    background:#181818;
+    color:#aaa;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    padding:13px 18px;
+    border-radius:9px;
+    background:#181818;
+    border:1px solid #333;
+    color:white;
+    opacity:0;
+    transform:translateY(20px);
+    pointer-events:none;
+    transition:.3s;
+    z-index:9999;
+    font-size:13px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .content{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:850px){
+
+    .sidebar{
+        width:75px;
+        padding:20px 8px;
+    }
+
+    .brand{
+        text-align:center;
+        padding:10px 2px 20px;
+    }
+
+    .brand h2{
+        font-size:14px;
+    }
+
+    .brand small,
+    .menu-title,
+    .nav a span,
+    .admin-info,
+    .logout-btn span{
+        display:none;
+    }
+
+    .nav a{
+        justify-content:center;
+        padding:13px 5px;
+    }
+
+    .sidebar-bottom{
+        left:8px;
+        right:8px;
+    }
+
+    .admin-card{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:75px;
+        padding:20px;
+    }
+}
+
+@media(max-width:650px){
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search{
+        max-width:none;
+    }
+
+    .filters{
+        overflow:auto;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .project-grid{
+        grid-template-columns:1fr;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- ==================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <h2>
+            Mahir <span>Elite2</span>
+        </h2>
+
+        <small>
+            PORTFOLIO MANAGEMENT
+        </small>
+
+    </div>
+
+
+    <div class="menu-title">
+        Main Menu
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="admin-dashboard.html">
+
+            <div class="nav-icon">
+                📊
+            </div>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="portfolio-manager.html"
+            class="active"
+        >
+
+            <div class="nav-icon">
+                🚀
+            </div>
+
+            <span>
+                Projects
+            </span>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            target="_blank"
+        >
+
+            <div class="nav-icon">
+                🌐
+            </div>
+
+            <span>
+                Website
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="menu-title">
+        Account
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="admin.html">
+
+            <div class="nav-icon">
+                🔐
+            </div>
+
+            <span>
+                Login
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="admin-card">
+
+            <div class="avatar">
+                M
+            </div>
+
+            <div class="admin-info">
+
+                <strong>
+                    Admin
+                </strong>
+
+                <small>
+                    Mahir Elite2
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+
+            🚪
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Project Manager
+            </h1>
+
+            <p>
+                Create, edit and manage your portfolio projects.
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <a
+                href="admin-dashboard.html"
+                class="btn"
+            >
+                ← Dashboard
+            </a>
+
+
+            <a
+                href="index.html"
+                target="_blank"
+                class="btn btn-primary"
+            >
+                🌐 View Portfolio
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         STATS
+    ================================================== -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-value" id="totalProjects">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Total Projects
+                    </div>
+                </div>
+
+                <div class="stat-icon">
+                    🚀
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div>
+                    <div
+                        class="stat-value"
+                        id="featuredProjects"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Featured Projects
+                    </div>
+                </div>
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div>
+                    <div
+                        class="stat-value"
+                        id="categoriesCount"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Categories
+                    </div>
+                </div>
+
+                <div class="stat-icon">
+                    📁
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-value">
+                        ON
+                    </div>
+
+                    <div class="stat-label">
+                        Portfolio Status
+                    </div>
+                </div>
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         TOOLBAR
+    ================================================== -->
+
+    <div class="toolbar">
+
+        <div class="search">
+
+            <span>
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search projects..."
+            >
+
+        </div>
+
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                class="filter"
+                data-filter="featured"
+            >
+                Featured
+            </button>
+
+            <button
+                class="filter"
+                data-filter="web"
+            >
+                Web
+            </button>
+
+            <button
+                class="filter"
+                data-filter="design"
+            >
+                Design
+            </button>
+
+            <button
+                class="filter"
+                data-filter="trading"
+            >
+                Trading
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         CONTENT
+    ================================================== -->
+
+    <section class="content">
+
+
+        <!-- ==================================================
+             FORM
+        ================================================== -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+
+                <h2 id="formTitle">
+                    ➕ Add New Project
+                </h2>
+
+                <small>
+                    PROJECT FORM
+                </small>
+
+            </div>
+
+
+            <form id="projectForm">
+
+
+                <!-- PROJECT NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectName"
+                        placeholder="e.g. Smart Trading Bot"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Description *
+                    </label>
+
+                    <textarea
+                        id="projectDescription"
+                        placeholder="Describe your project..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- CATEGORY + LINK -->
+
+                <div class="row">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select id="projectCategory">
+
+                            <option value="web">
+                                Web Development
+                            </option>
+
+                            <option value="design">
+                                Graphic Design
+                            </option>
+
+                            <option value="trading">
+                                Trading
+                            </option>
+
+                            <option value="video">
+                                Video & Motion
+                            </option>
+
+                            <option value="data">
+                                Data Analytics
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Project Link
+                        </label>
+
+                        <input
+                            type="url"
+                            id="projectLink"
+                            placeholder="https://example.com"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- IMAGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project Image
+                    </label>
+
+
+                    <label
+                        class="upload-box"
+                        for="imageInput"
+                        id="uploadBox"
+                    >
+
+                        <div
+                            class="upload-content"
+                            id="uploadContent"
+                        >
+
+                            <div class="upload-icon">
+                                🖼️
+                            </div>
+
+                            <p>
+                                Click to upload project image
+                            </p>
+
+                            <small>
+                                JPG, PNG or WEBP
+                            </small>
+
+                        </div>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                </div>
+
+
+                <!-- FEATURED -->
+
+                <div class="checkbox-row">
+
+                    <input
+                        type="checkbox"
+                        id="featuredProject"
+                    >
+
+                    <label
+                        for="featuredProject"
+                    >
+                        Mark as Featured Project
+                    </label>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="saveButton"
+                    >
+                        💾 Save Project
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn"
+                        onclick="resetForm()"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PROJECT LIST
+        ================================================== -->
+
+        <div class="panel">
+
+            <div class="projects-header">
+
+                <h2>
+                    🚀 Your Projects
+                </h2>
+
+                <span id="projectCountLabel">
+                    0 projects
+                </span>
+
+            </div>
+
+
+            <div
+                class="project-grid"
+                id="projectGrid"
+            >
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ==================================================
+     PREVIEW MODAL
+================================================== -->
+
+<div
+    class="modal"
+    id="previewModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h2>
+                Project Preview
+            </h2>
+
+            <button
+                class="close"
+                onclick="closePreview()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div id="previewContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+>
+</div>
+
+
+
+<script>
+
+/* ==================================================
+   ADMIN SECURITY
+================================================== */
+
+const loggedIn =
+    sessionStorage.getItem("adminLoggedIn");
+
+if(loggedIn !== "true"){
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* ==================================================
+   STORAGE
+================================================== */
+
+let projects =
+    JSON.parse(
+        localStorage.getItem(
+            "portfolioProjects"
+        )
+    ) || [];
+
+
+let editingId = null;
+
+let selectedFilter = "all";
+
+let currentImage = "";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const form =
+    document.getElementById("projectForm");
+
+const nameInput =
+    document.getElementById("projectName");
+
+const descriptionInput =
+    document.getElementById(
+        "projectDescription"
+    );
+
+const categoryInput =
+    document.getElementById(
+        "projectCategory"
+    );
+
+const linkInput =
+    document.getElementById(
+        "projectLink"
+    );
+
+const imageInput =
+    document.getElementById(
+        "imageInput"
+    );
+
+const featuredInput =
+    document.getElementById(
+        "featuredProject"
+    );
+
+const projectGrid =
+    document.getElementById(
+        "projectGrid"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+/* ==================================================
+   IMAGE UPLOAD
+================================================== */
+
+imageInput.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        if(
+            !file.type.startsWith("image/")
+        ){
+
+            showToast(
+                "Please select an image file."
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event){
+
+                currentImage =
+                    event.target.result;
+
+
+                document.getElementById(
+                    "uploadBox"
+                ).innerHTML = `
+
+                    <img
+                        src="${currentImage}"
+                        alt="Project Preview"
+                    >
+
+                `;
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* ==================================================
+   SAVE PROJECT
+================================================== */
+
+form.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        const name =
+            nameInput.value.trim();
+
+        const description =
+            descriptionInput.value.trim();
+
+        const category =
+            categoryInput.value;
+
+        const link =
+            linkInput.value.trim();
+
+        const featured =
+            featuredInput.checked;
+
+
+        if(!name){
+
+            showToast(
+                "Project name is required."
+            );
+
+            return;
+
+        }
+
+
+        if(!description){
+
+            showToast(
+                "Project description is required."
+            );
+
+            return;
+
+        }
+
+
+        /* EDIT */
+
+        if(editingId !== null){
+
+            const index =
+                projects.findIndex(
+                    project =>
+                        project.id === editingId
+                );
+
+
+            if(index !== -1){
+
+                projects[index].name =
+                    name;
+
+                projects[index].description =
+                    description;
+
+                projects[index].category =
+                    category;
+
+                projects[index].link =
+                    link;
+
+                projects[index].featured =
+                    featured;
+
+
+                if(currentImage){
+
+                    projects[index].image =
+                        currentImage;
+
+                }
+
+
+                showToast(
+                    "Project updated successfully."
+                );
+
+            }
+
+        }
+
+
+        /* NEW PROJECT */
+
+        else{
+
+            const newProject = {
+
+                id:Date.now(),
+
+                name:name,
+
+                description:description,
+
+                category:category,
+
+                link:link,
+
+                image:currentImage,
+
+                featured:featured,
+
+                published:true,
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            projects.push(
+                newProject
+            );
+
+
+            showToast(
+                "Project added successfully."
+            );
+
+        }
+
+
+        saveProjects();
+
+        resetForm();
+
+        renderProjects();
+
+        updateStats();
+
+    }
+);
+
+
+/* ==================================================
+   SAVE STORAGE
+================================================== */
+
+function saveProjects(){
+
+    localStorage.setItem(
+        "portfolioProjects",
+        JSON.stringify(projects)
+    );
+
+}
+
+
+/* ==================================================
+   RENDER PROJECTS
+================================================== */
+
+function renderProjects(){
+
+    const search =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        [...projects];
+
+
+    /* FILTER */
+
+    if(
+        selectedFilter ===
+        "featured"
+    ){
+
+        filtered =
+            filtered.filter(
+                project =>
+                    project.featured === true
+            );
+
+    }
+    else if(
+        selectedFilter !==
+        "all"
+    ){
+
+        filtered =
+            filtered.filter(
+                project =>
+                    project.category ===
+                    selectedFilter
+            );
+
+    }
+
+
+    /* SEARCH */
+
+    if(search){
+
+        filtered =
+            filtered.filter(
+                project =>
+
+                    project.name
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    project.description
+                    .toLowerCase()
+                    .includes(search)
+
+            );
+
+    }
+
+
+    /* EMPTY */
+
+    if(filtered.length === 0){
+
+        projectGrid.innerHTML = `
+
+            <div
+                class="empty"
+                style="grid-column:1/-1;"
+            >
+
+                <div class="empty-icon">
+                    📂
+                </div>
+
+                <h3>
+                    No Projects Found
+                </h3>
+
+                <p>
+                    Add your first project using the form.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* CARDS */
+
+    projectGrid.innerHTML =
+        filtered
+        .slice()
+        .reverse()
+        .map(
+            project => {
+
+                const categoryName =
+                    getCategoryName(
+                        project.category
+                    );
+
+
+                return `
+
+                    <article
+                        class="project-card"
+                    >
+
+                        <div
+                            class="project-cover"
+                        >
+
+                            ${
+                                project.image
+
+                                ?
+
+                                `
+                                <img
+                                    src="${project.image}"
+                                    alt="${escapeHTML(project.name)}"
+                                >
+                                `
+
+                                :
+
+                                `
+                                <div
+                                    class="no-image"
+                                >
+                                    🚀
+                                </div>
+                                `
+                            }
+
+
+                            ${
+                                project.featured
+
+                                ?
+
+                                `
+                                <div
+                                    class="featured"
+                                >
+                                    ⭐ FEATURED
+                                </div>
+                                `
+
+                                :
+
+                                ""
+                            }
+
+                        </div>
+
+
+                        <div
+                            class="project-body"
+                        >
+
+                            <div
+                                class="project-category"
+                            >
+                                ${categoryName}
+                            </div>
+
+
+                            <h3>
+                                ${escapeHTML(
+                                    project.name
+                                )}
+                            </h3>
+
+
+                            <p>
+                                ${escapeHTML(
+                                    project.description
+                                )}
+                            </p>
+
+
+                            <div
+                                class="project-actions"
+                            >
+
+                                <button
+                                    class="action"
+                                    onclick="previewProject(${project.id})"
+                                >
+                                    👁 Preview
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProject(${project.id})"
+                                >
+                                    ✏ Edit
+                                </button>
+
+
+                                <button
+                                    class="action delete"
+                                    onclick="deleteProject(${project.id})"
+                                >
+                                    🗑 Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ==================================================
+   CATEGORY NAME
+================================================== */
+
+function getCategoryName(category){
+
+    const categories = {
+
+        web:"Web Development",
+
+        design:"Graphic Design",
+
+        trading:"Trading",
+
+        video:"Video & Motion",
+
+        data:"Data Analytics",
+
+        other:"Other"
+
+    };
+
+
+    return (
+        categories[category]
+        || "Other"
+    );
+
+}
+
+
+/* ==================================================
+   EDIT PROJECT
+================================================== */
+
+function editProject(id){
+
+    const project =
+        projects.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+    editingId = id;
+
+
+    nameInput.value =
+        project.name;
+
+    descriptionInput.value =
+        project.description;
+
+    categoryInput.value =
+        project.category ||
+        "web";
+
+    linkInput.value =
+        project.link ||
+        "";
+
+    featuredInput.checked =
+        project.featured === true;
+
+
+    currentImage =
+        project.image ||
+        "";
+
+
+    if(project.image){
+
+        document.getElementById(
+            "uploadBox"
+        ).innerHTML = `
+
+            <img
+                src="${project.image}"
+                alt="Project Image"
+            >
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "✏️ Edit Project";
+
+
+    document.getElementById(
+        "saveButton"
+    ).textContent =
+        "💾 Update Project";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* ==================================================
+   DELETE
+================================================== */
+
+function deleteProject(id){
+
+    const project =
+        projects.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            `Delete "${project.name}"?`
+        );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    projects =
+        projects.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveProjects();
+
+    renderProjects();
+
+    updateStats();
+
+
+    showToast(
+        "Project deleted."
+    );
+
+}
+
+
+/* ==================================================
+   PREVIEW
+================================================== */
+
+function previewProject(id){
+
+    const project =
+        projects.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "previewModal"
+        );
+
+
+    const content =
+        document.getElementById(
+            "previewContent"
+        );
+
+
+    content.innerHTML = `
+
+        ${
+            project.image
+
+            ?
+
+            `
+            <img
+                src="${project.image}"
+                style="
+                    width:100%;
+                    max-height:330px;
+                    object-fit:cover;
+                    border-radius:10px;
+                    margin-bottom:18px;
+                "
+            >
+            `
+
+            :
+
+            ""
+        }
+
+
+        <div
+            style="
+                color:#777;
+                font-size:11px;
+                text-transform:uppercase;
+                margin-bottom:8px;
+            "
+        >
+            ${getCategoryName(
+                project.category
+            )}
+        </div>
+
+
+        <h2
+            style="
+                margin-bottom:10px;
+            "
+        >
+            ${escapeHTML(
+                project.name
+            )}
+        </h2>
+
+
+        <p
+            style="
+                color:#888;
+                line-height:1.8;
+                font-size:13px;
+                margin-bottom:18px;
+            "
+        >
+            ${escapeHTML(
+                project.description
+            )}
+        </p>
+
+
+        ${
+            project.link
+
+            ?
+
+            `
+            <a
+                href="${safeURL(project.link)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+            >
+                🔗 Open Project
+            </a>
+            `
+
+            :
+
+            `
+            <span
+                style="
+                    color:#555;
+                    font-size:12px;
+                "
+            >
+                No project link added.
+            </span>
+            `
+        }
+
+    `;
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* ==================================================
+   CLOSE PREVIEW
+================================================== */
+
+function closePreview(){
+
+    document
+        .getElementById(
+            "previewModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* ==================================================
+   RESET FORM
+================================================== */
+
+function resetForm(){
+
+    form.reset();
+
+    editingId = null;
+
+    currentImage = "";
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "➕ Add New Project";
+
+
+    document.getElementById(
+        "saveButton"
+    ).textContent =
+        "💾 Save Project";
+
+
+    document.getElementById(
+        "uploadBox"
+    ).innerHTML = `
+
+        <div
+            class="upload-content"
+        >
+
+            <div class="upload-icon">
+                🖼️
+            </div>
+
+            <p>
+                Click to upload project image
+            </p>
+
+            <small>
+                JPG, PNG or WEBP
+            </small>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   STATS
+================================================== */
+
+function updateStats(){
+
+    document.getElementById(
+        "totalProjects"
+    ).textContent =
+        projects.length;
+
+
+    document.getElementById(
+        "featuredProjects"
+    ).textContent =
+        projects.filter(
+            project =>
+                project.featured
+        ).length;
+
+
+    const categories =
+        new Set(
+            projects.map(
+                project =>
+                    project.category
+            )
+        );
+
+
+    document.getElementById(
+        "categoriesCount"
+    ).textContent =
+        categories.size;
+
+
+    document.getElementById(
+        "projectCountLabel"
+    ).textContent =
+
+        projects.length +
+
+        (
+            projects.length === 1
+            ? " project"
+            : " projects"
+        );
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+searchInput.addEventListener(
+    "input",
+    function(){
+
+        renderProjects();
+
+    }
+);
+
+
+/* ==================================================
+   FILTERS
+================================================== */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    document
+                        .querySelectorAll(
+                            ".filter"
+                        )
+                        .forEach(
+                            btn =>
+                                btn.classList
+                                .remove(
+                                    "active"
+                                )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    selectedFilter =
+                        this.dataset.filter;
+
+
+                    renderProjects();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ==================================================
+   TOAST
+================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logout(){
+
+    sessionStorage.removeItem(
+        "adminLoggedIn"
+    );
+
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==================================================
+   SAFE URL
+================================================== */
+
+function safeURL(url){
+
+    if(
+        !url.startsWith(
+            "http://"
+        ) &&
+        !url.startsWith(
+            "https://"
+        )
+    ){
+
+        return (
+            "https://" +
+            url
+        );
+
+    }
+
+
+    return url;
+
+}
+
+
+/* ==================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+================================================== */
+
+document
+    .getElementById(
+        "previewModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target === this
+            ){
+
+                closePreview();
+
+            }
+
+        }
+    );
+
+
+/* ==================================================
+   INITIAL LOAD
+================================================== */
+
+updateStats();
+
+renderProjects();
+
+</script>
+
+</body>
+</html>
